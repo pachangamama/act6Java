@@ -1,1 +1,45 @@
+package com.act6java;
+import java.util.Scanner;
 
+public class Boletas
+{
+    public static void main( String[] args )
+    {
+
+        String nombre_alumno;
+        int[] boleta_alumno = new int[5];
+        char[] boleta_letra = new char[5];
+
+        Scanner Line = new Scanner(System.in);
+
+        System.out.print("Nombre del alumno: ");
+        nombre_alumno = Line.next();
+
+        System.out.println();
+
+        for(int i = 0; i < boleta_alumno.length; i++){
+
+            System.out.print("Calificación de la materia " + (i + 1) + ":" );
+            boleta_alumno[i] = Line.nextInt();
+
+            if(boleta_alumno[i] > 100 || boleta_alumno[i] <= 0){
+
+                System.err.println("Calificación no válida.");
+                System.exit(1);
+            }
+
+        }
+
+        System.out.println();
+
+        Methods Operador = new Methods();
+
+        int PromedioFinal = Operador.PromedioFinal(boleta_alumno);
+        System.out.println("El promedio del alumno es: " + PromedioFinal);
+
+        boleta_letra = Operador.CalificacionFinal(boleta_alumno, boleta_letra);
+
+        Operador.Printer(PromedioFinal, boleta_letra, boleta_alumno, nombre_alumno);
+
+    }
+}
